@@ -1,0 +1,147 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .todo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .todo-form input,
+  .todo-form textarea,
+  .todo-form button {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  /* .todo-list .task-item {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  } */
+  
+  .task-buttons button {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .task-buttons button:last-child {
+    margin-right: 0;
+  }
+
+ 
+
+.notification {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .todo-list {
+   
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 21px;
+    margin-bottom: 10px;
+  }
+  
+  .task-item {
+    
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    user-select: none;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .task-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .task-buttons {
+    /* ... (existing styles) */
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: -51px
+  }
+  
+  /* Styling for the drag-and-drop feature */
+  .task-item.draggable {
+    /* Customize the appearance of the dragged item here */
+    opacity: 0.8;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    cursor: grabbing;
+  }
+  
+  /* Styling for the dragged-over item */
+  .task-item.dragging-over {
+    background-color: #e0e0e0;
+  }
+  
+  /* Styling for the placeholder during dragging */
+  .task-item.placeholder {
+    display: none;
+  }
+
+  .flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
