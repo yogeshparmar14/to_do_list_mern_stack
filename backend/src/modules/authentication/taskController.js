@@ -3,7 +3,7 @@ const userModel = require("../../db/models/taskSchema")
 const addTask = async (req, res) => {
     console.log(req.body)
     console.log("req.user",req.user)
-    const { title, description, completed,priority } = req.body
+    const { title, description, completed,priority,dueDate } = req.body
     if (!title || !description)
         return res.send({ "message": "All fields are required", "status": 400 })
     try {
@@ -13,7 +13,8 @@ const addTask = async (req, res) => {
             description: description,
             completed: completed,
             useremail:req.user.email,
-            priority:priority
+            priority:priority,
+            dueDate:dueDate
 
         })
         await doc.save()

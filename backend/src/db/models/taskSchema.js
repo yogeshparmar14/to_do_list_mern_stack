@@ -11,7 +11,7 @@ const taskSchema = new mongoose.Schema({
     completed:{type:Boolean,required:true},
     useremail:{type:String,required:true},
     createdAt:{type:String,default:date},
-    dueDate:{type:String,default:date},
+    dueDate:{type:Number,},
     updatedAt:{type:Number}, 
 })
 

@@ -13,28 +13,50 @@ const TodoList = ({ tasks, deleteTask, updateTask, rearrangetask, updateTitle })
     // const [editTask,setEditTask] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
     const [indexOfLastItemState, setIndexOfLastItemState] = useState(0)
-    useEffect(() => {
-        const indexOfLastItem = currentPage * itemsPerPage;
-        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-        const currentItems = itemTasks.slice(indexOfFirstItem, indexOfLastItem);
-        setSortedTasks(currentItems)
-        setIndexOfLastItemState(indexOfLastItem)
-        console.log("hell2")
-    }, [currentPage])
+    
     useEffect(() => {
         if (tasks) {
-            setSortedTasks(tasks)
+            const currentItems = tasks.slice(0, 3);
+            setSortedTasks(currentItems)
             setItemTasks(tasks)
         }
         console.log("hello")
     }, [tasks])
     useEffect(() => {
         if (sortBy === "priority") {
-            const dataArray = itemTasks.sort((a, b) => { return a?.priority - b?.priority })
+            const dataArray = itemTasks.sort((a, b) => { return a.priority - b.priority })
             console.log("dataArray", dataArray)
-            setSortedTasks(dataArray)
+            const currentItems = dataArray.slice(0, 3);
+            setSortedTasks(currentItems)
+        }
+        if (sortBy === "dueDate") {
+            const dataArray = itemTasks.sort((a, b) => { return a.dueDate - b.dueDate })
+            console.log("dataArray", dataArray)
+            const currentItems = dataArray.slice(0, 3);
+            setSortedTasks(currentItems)
         }
     }, [sortBy])
+
+    const nextPage =()=>{
+        let latestedPage = currentPage+1
+        const indexOfLastItem = latestedPage * itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+        const currentItems = itemTasks.slice(indexOfFirstItem, indexOfLastItem);
+        setSortedTasks(currentItems)
+        setIndexOfLastItemState(indexOfLastItem)
+        setCurrentPage((prevPage) => prevPage + 1)
+    }
+
+    const previousPage =()=>{
+        let latestedPage = currentPage-1
+        const indexOfLastItem = latestedPage * itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+        const currentItems = itemTasks.slice(indexOfFirstItem, indexOfLastItem);
+        setSortedTasks(currentItems)
+        setIndexOfLastItemState(indexOfLastItem)
+        setCurrentPage((prevPage) => prevPage - 1)
+    }
+
 
     const searchFunction = (value) => {
         console.log("searchQuery")
@@ -43,15 +65,10 @@ const TodoList = ({ tasks, deleteTask, updateTask, rearrangetask, updateTitle })
                 task.title.toLowerCase().includes(value.toLowerCase()) ||
                 task.description.toLowerCase().includes(value.toLowerCase())
         );
-        setSortedTasks(filteredTask)
+        const currentItems = filteredTask.slice(0, 3);
+        setSortedTasks(currentItems)
     }
 
-
-    // const sortedByPrio =(value)=>{
-    //     if(value==="priority"){
-
-    //     }
-    // }
 
     const handleDragEnd = (result) => {
         if (!result.destination) return;
@@ -77,15 +94,15 @@ const TodoList = ({ tasks, deleteTask, updateTask, rearrangetask, updateTitle })
                         onChange={(e) => searchFunction(e.target.value)}
                     />
                     {/* Sorting dropdown */}
-                    {/* <label style={{marginLeft: "25px"}}>
+                    <label style={{marginLeft: "25px"}}>
                 Sort by:
                 <select onChange={(e) => {setSortBy(e.target.value)}}>
-                    <option value="">Title</option>
+                    <option value=""></option>
                     <option value="priority">Priority</option>
                     <option value="dueDate">Due Date</option>
                   f
                 </select>
-            </label> */}
+            </label>
                 </div>
                 <DragDropContext onDragEnd={handleDragEnd}>
                     <Droppable droppableId="todo-list" type="TASK" >
@@ -134,13 +151,13 @@ const TodoList = ({ tasks, deleteTask, updateTask, rearrangetask, updateTitle })
 
             >
                 <button
-                    onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+                    onClick={() =>  {previousPage()}}
                     disabled={currentPage === 1}
                 >
                     Previous
                 </button>
 
-                <button onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+                <button onClick={() =>  {nextPage()}}
                     disabled={indexOfLastItemState >= itemTasks.length}
                 >next</button>
             </div>

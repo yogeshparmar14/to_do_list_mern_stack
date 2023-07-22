@@ -157,8 +157,7 @@ console.log("tasks",tasks)
           </div>
         </div>
       </div>:null} 
-       {/* <Signup/>*/} 
-     {/* <Login/> */}
+       
     </div>
   );
 };

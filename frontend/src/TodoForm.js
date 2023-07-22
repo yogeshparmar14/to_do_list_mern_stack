@@ -9,11 +9,12 @@ const TodoForm = ({ addTask,button,updateData }) => {
         e.preventDefault();
         if(button==="Update Task")
         if (!title || !description) return; // Simple form validation
+        const newDate = new Date(dueDate).getTime()
         const newTask = {
             title,
             description,
             priority,
-            // dueDate,
+            duedate:newDate,
             completed: false,
 
         };
@@ -25,12 +26,14 @@ const TodoForm = ({ addTask,button,updateData }) => {
 
     return (
         <form className="todo-form" onSubmit={handleSubmit}>
+        <p>Title</p>
             <input
                 type="text"
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
+            <p>Priority</p>
              <input
                 type="number"
                 placeholder="Priority"
@@ -39,12 +42,14 @@ const TodoForm = ({ addTask,button,updateData }) => {
                 max="10"
                 onChange={(e) => setPriority(e.target.value)}
             />
-              {/* <input
+            <p>Due Date</p>
+              <input
                 type="date"
-                placeholder="Priority"
-                value={priority}
+                placeholder="Due Date"
+                // value={priority}
                 onChange={(e) => setDueDate(e.target.value)}
-            /> */}
+            />
+            <p>Description</p>
             <textarea
                 placeholder="Description"
                 value={description}

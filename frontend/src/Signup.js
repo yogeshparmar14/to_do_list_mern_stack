@@ -49,10 +49,6 @@ const Signup = () => {
   }
   };
 
-  // Redirect to login page if already registered
-  // if (isRegistered) {
-  //   return <Redirect to="/login" />;
-  // }
 
   return (
     <div className="signup-container">
